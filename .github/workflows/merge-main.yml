@@ -1,0 +1,25 @@
+name: Merge to main
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  merge:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Merge to main
+        run: |
+          git checkout main
+          git pull origin main
+          git merge --no-ff ${{ github.sha }}
+          git push origin main
