@@ -1,31 +1,27 @@
 'use client';
 import Container from '@/components/Container';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
-interface VolumetriaData {
-  Modalidade: string;
-  Estudos: string;
-  'Tamanho (GB)': string;
-}
+import { fetchVolumetriaData, VolumetriaData } from './api';
 
 export default function Page() {
   const [dataVolumetria, setDataVolumetria] = useState<VolumetriaData[]>([]);
 
-  const fetchData = async () => {
+  async function fetchData() {
     try {
-      const response = await axios.get(
-        'http://localhost:3333/api/volumetric-report',
-      );
-      setDataVolumetria(response.data);
+      const data = await fetchVolumetriaData();
+      setDataVolumetria(data);
     } catch (error) {
       console.error('Erro ao buscar dados de volumetria:', error);
     }
-  };
+  }
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log('Dados de volumetria no useEffect:', dataVolumetria);
+  }, [dataVolumetria]);
 
   return (
     <section>
