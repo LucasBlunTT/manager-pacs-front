@@ -26,8 +26,8 @@ export default function VolumetriaChart({ data }: VolumetriaChartProps) {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="Estudos" fill="#8884d8" />
-          <Bar dataKey="Tamanho (GB)" fill="#82ca9d" />
+          <Bar dataKey="Estudos" fill="#0078D4" />
+          <Bar dataKey="Tamanho (GB)" fill="#00BCF2" />
         </BarChart>
       </ResponsiveContainer>
     </div>

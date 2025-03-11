@@ -5,7 +5,7 @@ import logoPixeon2 from '@/assets/logo/logo-pixeon-2.png';
 
 export default function NavBar() {
   return (
-    <nav className="h-full w-full max-w-90 bg-gradient-to-r from-teal-400 via-blue-500 to-indigo-800 px-7 py-12 rounded-lg">
+    <nav className="h-full w-full max-w-90 bg-gradient-to-br from-indigo-800 via-blue-500 to-teal-400 px-7 py-12 rounded-r-3xl">
       <Link href="/">
         <Image
           src={logoPixeon2}

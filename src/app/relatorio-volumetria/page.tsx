@@ -3,14 +3,17 @@ import Container from '@/components/Container';
 import React, { useEffect, useState } from 'react';
 import { fetchVolumetriaData, VolumetriaData } from './api';
 import VolumetriaChart from '@/components/VolumetriaChart';
-import Loading from '@/components/Loading';
 import InputDate from '@/components/InputDate';
 
 export default function RelatorioVolumetria() {
   const [dataVolumetria, setDataVolumetria] = useState<VolumetriaData[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [endDate, setEndDate] = useState(() => {
+    const date = new Date();
+    date.setDate(date.getDate());
+    return date.toISOString().split('T')[0];
+  });
 
   useEffect(() => {
     async function fetchData() {
@@ -40,7 +43,12 @@ export default function RelatorioVolumetria() {
           setStartDate={setStartDate}
           setEndDate={setEndDate}
         />
-        {loading ? <Loading /> : <VolumetriaChart data={dataVolumetria} />}
+        {dataVolumetria.length === 0 && !loading && (
+          <p className="text-center text-gray-500">
+            Nenhum dado de volumetria encontrado
+          </p>
+        )}
+        {dataVolumetria.length > 0 && <VolumetriaChart data={dataVolumetria} />}
       </Container>
     </section>
   );
