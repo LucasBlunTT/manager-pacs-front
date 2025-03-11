@@ -2,10 +2,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import logoPixeon2 from '@/assets/logo/logo-pixeon-2.png';
+import AccordionVolumetric from '../Accordion/AccordionVolumetric';
+import AccordionTasks from '../Accordion/AccordionTasks';
 
 export default function NavBar() {
   return (
-    <nav className="h-full w-full max-w-90 bg-gradient-to-br from-indigo-800 via-blue-500 to-teal-400 px-7 py-12 rounded-r-3xl">
+    <nav
+      className="h-full w-full max-w-90 px-7 py-12 rounded-r-3xl"
+      style={{
+        background:
+          'linear-gradient(150deg, rgb(96, 76, 205) 0%, rgb(79, 200, 235) 40%, rgb(34, 188, 159) 100%)',
+      }}
+    >
       <Link href="/">
         <Image
           src={logoPixeon2}
@@ -19,18 +27,11 @@ export default function NavBar() {
 
       <ul className="mt-4 space-y-2 text-white">
         <li className="font-bold hover:text-gray-300 cursor-pointer">
-          <Link href="/relatorio-volumetria">Relatório de Volumetria</Link>
+          <AccordionVolumetric description={'Relatórios de Volumetria'} />
         </li>
 
         <li className="font-bold hover:text-gray-300 cursor-pointer">
-          <Link href="/resetar-status-gravacao">
-            Resetar Status de Gravação[ACC]
-          </Link>
-        </li>
-        <li className="font-bold hover:text-gray-300 cursor-pointer">
-          <Link href="/resetar-status-gravacao-data">
-            Resetar Status de Gravação[DATA]
-          </Link>
+          <AccordionTasks description={'Ferramentas'} />
         </li>
       </ul>
     </nav>
