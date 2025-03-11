@@ -9,29 +9,37 @@ import InputDate from '@/components/InputDate';
 export default function RelatorioVolumetria() {
   const [dataVolumetria, setDataVolumetria] = useState<VolumetriaData[]>([]);
   const [loading, setLoading] = useState(true);
-
-  async function fetchData() {
-    try {
-      setLoading(true);
-      const data = await fetchVolumetriaData();
-      setDataVolumetria(data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.error('Erro ao buscar dados de volumetria:', error);
-    } finally {
-      setLoading(false);
-    }
-  }
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   useEffect(() => {
+    async function fetchData() {
+      if (!startDate || !endDate) return;
+      try {
+        setLoading(true);
+        const data = await fetchVolumetriaData(startDate, endDate);
+        setDataVolumetria(data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Erro ao buscar dados de volumetria:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
     fetchData();
-  }, []);
+  }, [startDate, endDate]);
 
   return (
     <section className="h-screen w-screen">
       <Container className="h-screen w-screen flex-col items-center justify-center">
-        <InputDate />
+        <InputDate
+          startDate={startDate}
+          endDate={endDate}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+        />
         {loading ? <Loading /> : <VolumetriaChart data={dataVolumetria} />}
       </Container>
     </section>

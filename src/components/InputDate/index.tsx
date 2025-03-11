@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export default function InputDate() {
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+interface InputDateProps {
+  startDate: string;
+  endDate: string;
+  setStartDate: (date: string) => void;
+  setEndDate: (date: string) => void;
+}
 
+export default function InputDate({
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
+}: InputDateProps) {
   return (
     <div className="flex items-center justify-center mb-4 gap-10">
       <div className="flex flex-col items-center justify-center">
