@@ -1,9 +1,15 @@
 'use client';
 import Container from '@/components/Container';
 import React, { useEffect, useState } from 'react';
-import { fetchVolumetriaData, VolumetriaData } from './api';
+import axios from 'axios';
 import VolumetriaChart from '@/components/VolumetriaChart';
 import InputDate from '@/components/InputDate';
+
+export interface VolumetriaData {
+  Modalidade: string;
+  Estudos: string;
+  'Tamanho (GB)': string;
+}
 
 export default function RelatorioVolumetria() {
   const [dataVolumetria, setDataVolumetria] = useState<VolumetriaData[]>([]);
@@ -20,8 +26,14 @@ export default function RelatorioVolumetria() {
       if (!startDate || !endDate) return;
       try {
         setLoading(true);
-        const data = await fetchVolumetriaData(startDate, endDate);
-        setDataVolumetria(data);
+        const response = await axios.post(
+          'http://localhost:3333/api/volumetric-report',
+          {
+            startDate: startDate,
+            endDate: endDate,
+          }
+        );
+        setDataVolumetria(response.data);
         setLoading(false);
       } catch (error) {
         setLoading(false);
