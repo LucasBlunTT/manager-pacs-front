@@ -33,19 +33,3 @@ O Manager PACS Frontend é um sistema desenvolvido em Next.js e React para gest�
   npm install
   npm run dev
   ```
-2. **Configuração do Ambiente**:
-  - Crie um arquivo `.env.local` na raiz do projeto e adicione as variáveis de ambiente necessárias.
-  - Exemplo:
-    ```env
-    NEXT_PUBLIC_API_URL=https://api.seuprojeto.com
-    ```
-
-## 📄 Licença
-Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 👥 Contribuidores
-- [Seu Nome](https://github.com/seu-usuario)
-- [Outro Contribuidor](https://github.com/outro-usuario)
-
-## 📞 Contato
-Para mais informações, entre em contato pelo e-mail: [seu-email@dominio.com](mailto:seu-email@dominio.com)
