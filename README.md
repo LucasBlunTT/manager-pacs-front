@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Manager PACS Frontend
 
-## Getting Started
+## 📷 Screenshot
+![Screenshot](screenshot.png)
 
-First, run the development server:
+## 📋 Descrição do Projeto
+O Manager PACS Frontend é um sistema desenvolvido em Next.js e React para gestão de imagens e volumetria de dados no PACS. O projeto fornece uma interface intuitiva para análise e visualização de dados médicos, com suporte para gráficos interativos e gerenciamento de volumetria diária.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Funcionalidades
+- **Dashboard Interativo**: Exibição de volumetria de exames com gráficos dinâmicos.
+- **Gráficos de Consumo**: Análise detalhada do uso de armazenamento.
+- **Interface Responsiva**: Adaptação para diferentes tamanhos de tela.
+- **Integração com API**: Consumo de dados dinâmicos para análise de volumetria.
+- **Componentização**: Estrutura modular para reutilização de componentes.
+- **Carregamento Assíncrono**: Melhor desempenho com carregamento de dados em segundo plano.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💻 Tecnologias Utilizadas
+- **Next.js**: Framework para aplicações React com renderização do lado do servidor.
+- **React**: Biblioteca para construção da interface do usuário.
+- **Recharts**: Biblioteca de gráficos para visualização de volumetria.
+- **Axios**: Cliente HTTP para comunicação com a API.
+- **Tailwind CSS**: Framework de CSS para estilização rápida e responsiva.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática ao código.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📈 Status do Projeto
+✅ Concluído
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Como Usar
+1. **Clone o Repositório**: 
+  ```bash
+  git clone https://github.com/seu-usuario/manager-pacs-front.git
+  cd manager-pacs-front
+  npm install
+  npm run dev
+  ```
+2. **Configuração do Ambiente**:
+  - Crie um arquivo `.env.local` na raiz do projeto e adicione as variáveis de ambiente necessárias.
+  - Exemplo:
+    ```env
+    NEXT_PUBLIC_API_URL=https://api.seuprojeto.com
+    ```
 
-## Learn More
+## 📄 Licença
+Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-To learn more about Next.js, take a look at the following resources:
+## 👥 Contribuidores
+- [Seu Nome](https://github.com/seu-usuario)
+- [Outro Contribuidor](https://github.com/outro-usuario)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📞 Contato
+Para mais informações, entre em contato pelo e-mail: [seu-email@dominio.com](mailto:seu-email@dominio.com)
