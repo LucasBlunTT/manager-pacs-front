@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import VolumetriaChart from '@/components/VolumetriaChart';
 import InputDate from '@/components/InputDate';
+import Button from '@/components/Button';
 
 export interface VolumetriaData {
   Modalidade: string;
@@ -18,7 +19,7 @@ export default function RelatorioVolumetria() {
   const [endDate, setEndDate] = useState(() => {
     const date = new Date();
     date.setDate(date.getDate());
-    return date.toISOString().split('T')[0];
+    return formatDate(date);
   });
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function RelatorioVolumetria() {
           {
             startDate: startDate,
             endDate: endDate,
-          }
+          },
         );
         setDataVolumetria(response.data);
         setLoading(false);
@@ -46,6 +47,21 @@ export default function RelatorioVolumetria() {
     fetchData();
   }, [startDate, endDate]);
 
+  function handleDateRangeChange(days: number) {
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - days);
+    setStartDate(formatDate(start));
+    setEndDate(formatDate(end));
+  }
+
+  function formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}${month}${day}`;
+  }
+
   return (
     <section className="h-screen w-screen">
       <Container className="h-screen w-screen flex-col items-center justify-center">
@@ -55,6 +71,24 @@ export default function RelatorioVolumetria() {
           setStartDate={setStartDate}
           setEndDate={setEndDate}
         />
+        <div className="flex space-x-4 my-4">
+          <Button
+            onClick={() => handleDateRangeChange(7)}
+            description="Últimos 7 dias"
+          />
+          <Button
+            onClick={() => handleDateRangeChange(15)}
+            description="Últimos 15 dias"
+          />
+          <Button
+            onClick={() => handleDateRangeChange(30)}
+            description="Últimos 30 dias"
+          />
+          <Button
+            onClick={() => handleDateRangeChange(365)}
+            description="Último 1 ano"
+          />
+        </div>
         {dataVolumetria.length === 0 && !loading && (
           <p className="text-center text-gray-500">
             Nenhum dado de volumetria encontrado

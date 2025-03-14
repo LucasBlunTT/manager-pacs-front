@@ -2372,7 +2372,7 @@ loose-envify@^1.4.0:
 
 lucide-react@^0.479.0:
   version "0.479.0"
-  resolved "https://registry.npmjs.org/lucide-react/-/lucide-react-0.479.0.tgz"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.479.0.tgz#7321f979a389ec5dd86747b2deb6444cf0922f8d"
   integrity sha512-aBhNnveRhorBOK7uA4gDjgaf+YlHMdMhQ/3cupk6exM10hWlEU+2QtWYOfhXhjAsmdb6LeKR+NZnow4UxRRiTQ==
 
 math-intrinsics@^1.1.0:
@@ -2733,7 +2733,7 @@ recharts-scale@^0.4.4:
 
 recharts@^2.15.1:
   version "2.15.1"
-  resolved "https://registry.npmjs.org/recharts/-/recharts-2.15.1.tgz"
+  resolved "https://registry.yarnpkg.com/recharts/-/recharts-2.15.1.tgz#0941adf0402528d54f6d81997eb15840c893aa3c"
   integrity sha512-v8PUTUlyiDe56qUj82w/EDVuzEFXwEHp9/xOowGAZwfLjB9uAy3GllQVIYMWF6nU+qibx85WF75zD7AjqoT54Q==
   dependencies:
     clsx "^2.0.0"

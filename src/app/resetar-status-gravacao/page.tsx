@@ -1,5 +1,5 @@
 'use client';
-import Button from '@/components/Button/Button';
+import Button from '@/components/Button';
 import Container from '@/components/Container';
 import InputText from '@/components/Input';
 import React, { useState } from 'react';

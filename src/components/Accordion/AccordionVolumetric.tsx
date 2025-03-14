@@ -22,6 +22,9 @@ export default function AccordionVolumetric({
         <AccordionContent>
           <Link href="/relatorio-volumetria">Volumetria Por Data</Link>
         </AccordionContent>
+        <AccordionContent>
+          <Link href="/consumo-diario">Consumo Diario</Link>
+        </AccordionContent>
       </AccordionItem>
     </Accordion>
   );
