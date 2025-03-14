@@ -8,13 +8,18 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
-import { VolumetriaData } from '@/app/relatorio-volumetria/api';
 
-interface VolumetriaChartProps {
+export interface VolumetriaData {
+  Modalidade: string;
+  Estudos: string;
+  'Tamanho (GB)': string;
+}
+
+export interface DataProps {
   data: VolumetriaData[];
 }
 
-export default function VolumetriaChart({ data }: VolumetriaChartProps) {
+export default function VolumetriaChart({ data }: DataProps) {
   return (
     <div style={{ width: '100%', height: 300 }}>
       <ResponsiveContainer width="100%" height="100%">
