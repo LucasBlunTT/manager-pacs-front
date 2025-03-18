@@ -51,8 +51,8 @@ export default function RelatorioVolumetria() {
     const end = new Date();
     const start = new Date();
     start.setDate(end.getDate() - days);
-    setStartDate(formatDate(start));
-    setEndDate(formatDate(end));
+    setStartDate(start.toISOString().split('T')[0]);
+    setEndDate(end.toISOString().split('T')[0]);
   }
 
   function formatDate(date: Date): string {
@@ -64,7 +64,7 @@ export default function RelatorioVolumetria() {
 
   return (
     <section className="h-screen w-screen">
-      <Container className="h-screen w-screen flex-col items-center justify-center">
+      <Container className="h-screen w-screen flex-col items-center justify-center">     
         <InputDate
           startDate={startDate}
           endDate={endDate}

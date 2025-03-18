@@ -1,9 +1,9 @@
 'use client';
-import Container from '@/components/Container';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import VolumetriaChartDaily from '@/components/VolumetriaChartDaily';
 import Loading from '@/components/Loading';
+import RadialChart from '@/components/RadialChart';
 
 export interface VolumetriaData {
   Modalidade: string;
@@ -49,14 +49,15 @@ export default function ConsumoDiario() {
   }, []);
 
   return (
-    <section className="h-screen w-screen">
-      <Container className="h-screen flex-col items-center justify-center">
-        {dataVolumetria.length === 0 ? (
-          <Loading />
-        ) : (
-          <VolumetriaChartDaily data={dataVolumetria} />
-        )}
-      </Container>
+    <section className="h-screen w-screen flex items-center justify-center">
+      <div className="flex h-full w-full items-center justify-center gap-10">
+      
+          <>
+            <VolumetriaChartDaily data={dataVolumetria} />
+            <RadialChart data={dataVolumetria} />
+          </>
+      
+      </div>
     </section>
   );
 }
