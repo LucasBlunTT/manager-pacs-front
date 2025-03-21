@@ -76,6 +76,7 @@ export default function VolumetriaChartDaily({ data }: DataProps) {
             tickLine={false}
             axisLine={false}
             tickFormatter={(value) => `${value} GB`}
+            interval={0}
           />
           <XAxis type="number" />
           <Tooltip />
