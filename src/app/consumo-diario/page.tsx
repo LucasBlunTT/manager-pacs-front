@@ -13,6 +13,7 @@ export interface VolumetriaData {
 
 export default function ConsumoDiario() {
   const [dataVolumetria, setDataVolumetria] = useState<VolumetriaData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   function getCurrentDate() {
     const date = new Date();
@@ -24,6 +25,7 @@ export default function ConsumoDiario() {
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true);
       const startDate = getCurrentDate();
       const endDate = getCurrentDate();
 
@@ -37,8 +39,12 @@ export default function ConsumoDiario() {
           },
         );
         setDataVolumetria(response.data);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error('Erro ao buscar dados de volumetria de hoje:', error);
+      } finally  {     
+        setLoading(false);
       }
     }
 
@@ -52,10 +58,10 @@ export default function ConsumoDiario() {
     <section className="h-screen w-screen flex items-center justify-center">
       <div className="flex h-full w-full items-center justify-center gap-10">
         {
-          dataVolumetria.length === 0 ? <Loading/> : 
+          loading ? <Loading/> : 
           <>
-            <RadialChart data={dataVolumetria} />
             <VolumetriaChartDaily data={dataVolumetria} />
+            <RadialChart data={dataVolumetria} />           
           </>
         }
         
