@@ -60,11 +60,11 @@ export default function RadialChart({ data }: DataProps) {
           },
         },
         {
-          breakpoint: 1536, // Telas extra grandes (ex.: monitores widescreen)
+          breakpoint: 1537, // Telas extra grandes (ex.: monitores widescreen)
           options: {
             chart: {
-              width: 1200,
-              height: 800,
+              width: 600,
+              height: 600,
             },
           },
         },

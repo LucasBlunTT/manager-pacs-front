@@ -14,6 +14,7 @@ export interface VolumetriaData {
 export default function ConsumoDiario() {
   const [dataVolumetria, setDataVolumetria] = useState<VolumetriaData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [timeLeft, setTimeLeft] = useState(60); // Tempo restante para o próximo refresh (em segundos)
 
   function getCurrentDate() {
     const date = new Date();
@@ -43,31 +44,46 @@ export default function ConsumoDiario() {
       } catch (error) {
         setLoading(false);
         console.error('Erro ao buscar dados de volumetria de hoje:', error);
-      } finally  {     
+      } finally {
         setLoading(false);
       }
     }
 
     fetchData();
-    const interval = setInterval(fetchData, 60000); // Consulta a cada 1 minuto
 
-    return () => clearInterval(interval); // Limpa o intervalo ao desmontar o componente
+    // Intervalo para atualizar os dados a cada 60 segundos
+    const interval = setInterval(() => {
+      fetchData();
+      setTimeLeft(60); // Reinicia o cronômetro após o refresh
+    }, 60000);
+
+    // Intervalo para atualizar o cronômetro a cada segundo
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => {
+      clearInterval(interval); // Limpa o intervalo de refresh
+      clearInterval(timer); // Limpa o intervalo do cronômetro
+    };
   }, []);
 
   return (
-    <section className="h-screen w-screen flex items-center justify-center">
+    <section className="h-screen w-screen flex flex-col items-center justify-center">
+        <div className="text-center text-gray-500">
+        <p>Próxima atualização em: {timeLeft} segundos</p>
+      </div>
       <div className="flex h-full w-full items-center justify-center gap-10">
-        {
-          loading ? <Loading/> : 
+    
+        {loading ? (
+          <Loading />
+        ) : (
           <>
             <VolumetriaChartDaily data={dataVolumetria} />
-            <RadialChart data={dataVolumetria} />           
+            <RadialChart data={dataVolumetria} />
           </>
-        }
-        
-        
-           
-      </div>
+        )}
+      </div>           
     </section>
   );
 }
