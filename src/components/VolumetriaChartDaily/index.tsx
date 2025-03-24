@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useEffect, useState } from 'react';
 import {
   Bar,
   BarChart,
@@ -55,6 +56,43 @@ const dataMock = [
 ];
 
 export default function VolumetriaChartDaily({ data }: DataProps) {
+  const [chartSize, setChartSize] = useState({ width: 900, height: 600 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      console.log(screenWidth);
+
+      if (screenWidth < 576) {
+        // Telas muito pequenas (ex.: smartphones)
+        setChartSize({ width: 300, height: 400 });
+      } else if (screenWidth < 768) {
+        // Telas pequenas (ex.: tablets em modo retrato)
+        setChartSize({ width: 400, height: 500 });
+      } else if (screenWidth < 992) {
+        // Telas médias (ex.: tablets em modo paisagem)
+        setChartSize({ width: 600, height: 500 });
+      } else if (screenWidth < 1200) {
+        // Telas grandes (ex.: laptops pequenos)
+        setChartSize({ width: 800, height: 600 });
+      } else {
+        // Telas muito grandes (ex.: desktops)
+        setChartSize({ width: 600, height: 500 });
+      }
+    };
+
+    // Adiciona o listener de resize
+    window.addEventListener('resize', handleResize);
+
+    // Chama a função uma vez para definir o tamanho inicial
+    handleResize();
+
+    // Remove o listener ao desmontar o componente
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <Card className="p-10 border-none shadow-lg">
       <CardHeader className="flex items-center">
@@ -63,8 +101,8 @@ export default function VolumetriaChartDaily({ data }: DataProps) {
       </CardHeader>
       <CardContent className="p-0">
         <BarChart
-          width={900} 
-          height={600}
+          width={chartSize.width}
+          height={chartSize.height}
           data={dataMock}
           layout="vertical"
           margin={{ top: 20, right: 90, left: 20, bottom: 20 }}

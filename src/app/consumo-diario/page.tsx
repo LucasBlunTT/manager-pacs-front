@@ -51,12 +51,16 @@ export default function ConsumoDiario() {
   return (
     <section className="h-screen w-screen flex items-center justify-center">
       <div className="flex h-full w-full items-center justify-center gap-10">
-      
+        {
+          dataVolumetria.length === 0 ? <Loading/> : 
           <>
-            <VolumetriaChartDaily data={dataVolumetria} />
             <RadialChart data={dataVolumetria} />
+            <VolumetriaChartDaily data={dataVolumetria} />
           </>
-      
+        }
+        
+        
+           
       </div>
     </section>
   );

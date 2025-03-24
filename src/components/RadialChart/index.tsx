@@ -51,13 +51,65 @@ export default function RadialChart({ data }: DataProps) {
       },
       responsive: [
         {
-          breakpoint: 480,
+          breakpoint: 1921,
+          options: {
+            chart: {
+              width: 730,
+              height: 686,
+            },
+          },
+        },
+        {
+          breakpoint: 1536, // Telas extra grandes (ex.: monitores widescreen)
+          options: {
+            chart: {
+              width: 1200,
+              height: 800,
+            },
+          },
+        },
+        {
+          breakpoint: 1400, // Telas muito grandes (ex.: desktops)
+          options: {
+            chart: {
+              width: 1000,
+              height: 700,
+            },
+          },
+        },
+        {
+          breakpoint: 1200, // Telas grandes (ex.: laptops pequenos)
+          options: {
+            chart: {
+              width: 800,
+              height: 600,
+            },
+          },
+        },
+        {
+          breakpoint: 992, // Telas médias (ex.: tablets em modo paisagem)
+          options: {
+            chart: {
+              width: 600,
+              height: 500,
+            },
+          },
+        },
+        {
+          breakpoint: 768, // Telas pequenas (ex.: tablets em modo retrato)
+          options: {
+            chart: {
+              width: 400,
+              height: 500,
+            },
+          },
+        },
+        {
+          breakpoint: 576, // Telas muito pequenas (ex.: smartphones)
           options: {
             chart: {
               width: 300,
-            },
-            legend: {
-              position: 'bottom',
+              height: 400,
             },
           },
         },
@@ -65,10 +117,11 @@ export default function RadialChart({ data }: DataProps) {
       labels,
     },
   };
+  
 
   return (
-    <div className="w-full max-w-3xl mx-auto relative shadow-lg">
-      <ReactApexChart options={state.options} series={state.series} type="donut" height={500} />
+    <div className="w-full mx-auto relative shadow-lg">
+      <ReactApexChart options={state.options} series={state.series} type="donut"  />
         <div
           style={{
             position: 'absolute',
