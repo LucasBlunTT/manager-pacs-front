@@ -5,7 +5,7 @@ import InputDate from '@/components/InputDate';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function ResetarGravacaoByAcc() {
+export default function ResetarGravacaoByDate() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
