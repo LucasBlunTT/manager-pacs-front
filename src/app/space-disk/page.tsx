@@ -44,14 +44,13 @@ export default function SpaceDisk() {
   }, []);
 
   return (
-    <div className="w-screen h-screen grid items-center justify-center gap-4 p-10 grid-cols-4 max-sm:grid-cols-1 max-lg:grid-cols-2 lg:grid-cols-4">
+    <div className="w-screen h-screen flex items-center justify-center p-10 ">
       {loading ? (
         <Loading />
       ) : (
         diskSpace && (
           <CustomGauge spaceTotal={diskSpace.total} spaceFree={diskSpace.free} discName={discName} />
-        )
-        
+        )        
       )}
     </div>
   );
