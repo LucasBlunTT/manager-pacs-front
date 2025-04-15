@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CustomGauge from '@/components/SpaceDiscChart';
 import Loading from '@/components/Loading';
+import Container from '@/components/Container';
 
 interface DiskSpace {
   total: number;
@@ -45,6 +46,7 @@ export default function SpaceDisk() {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center p-10 ">
+      <Container className='itencao-center justify-center'>
       {loading ? (
         <Loading />
       ) : (
@@ -52,6 +54,7 @@ export default function SpaceDisk() {
           <CustomGauge spaceTotal={diskSpace.total} spaceFree={diskSpace.free} discName={discName} />
         )        
       )}
+      </Container>
     </div>
   );
 }

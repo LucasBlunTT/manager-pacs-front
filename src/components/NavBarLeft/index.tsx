@@ -4,6 +4,7 @@ import React from 'react';
 import logoPixeon2 from '@/assets/logo/logo-pixeon-2.png';
 import AccordionVolumetric from '../Accordion/AccordionVolumetric';
 import AccordionTasks from '../Accordion/AccordionTasks';
+import AccordionProduction from '../Accordion/AccordionProduction';
 
 export default function NavBar() {
   return (
@@ -29,6 +30,10 @@ export default function NavBar() {
         <li className="font-bold hover:text-gray-300 cursor-pointer">
           <AccordionVolumetric description={'Relatórios de Volumetria'} />
         </li>
+        
+        <li className="font-bold hover:text-gray-300 cursor-pointer">
+          <AccordionProduction description={'Relatórios de Produção'} />
+        </li>
 
         <li className="font-bold hover:text-gray-300 cursor-pointer">
           <AccordionTasks description={'Ferramentas'} />
@@ -36,11 +41,7 @@ export default function NavBar() {
 
         <li className="font-bold hover:text-gray-300 cursor-pointer">
         <Link href="/space-disk">Espaço Armazenamento</Link>
-        </li>
-
-        <li className="font-bold hover:text-gray-300 cursor-pointer">
-        <Link href="/space-disk">Espaço Armazenamento</Link>
-        </li>
+        </li>  
       </ul>
     </nav>
   );
