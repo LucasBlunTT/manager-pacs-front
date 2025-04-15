@@ -37,6 +37,10 @@ export default function NavBar() {
         <li className="font-bold hover:text-gray-300 cursor-pointer">
         <Link href="/space-disk">Espaço Armazenamento</Link>
         </li>
+
+        <li className="font-bold hover:text-gray-300 cursor-pointer">
+        <Link href="/space-disk">Espaço Armazenamento</Link>
+        </li>
       </ul>
     </nav>
   );

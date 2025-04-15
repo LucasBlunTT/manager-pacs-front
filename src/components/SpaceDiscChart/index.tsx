@@ -68,7 +68,7 @@ export default function CustomGauge({ spaceTotal, spaceFree, discName }: CustomG
             fill: '#D3D3D3',
           },
         }}
-        text={() => `${spaceUsed} GB / ${spaceTotal} GB`}
+        text={() => `${spaceUsed.toFixed(2)} GB / ${spaceTotal} GB`}
       />
     </div>
   )
