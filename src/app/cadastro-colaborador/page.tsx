@@ -111,6 +111,7 @@ export default function CadastroColaborador() {
               <Button
                 type="submit"
                 className="mt-4 bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-all"
+                
               >
                 Salvar
               </Button>
