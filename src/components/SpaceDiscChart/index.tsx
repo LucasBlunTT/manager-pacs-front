@@ -1,75 +1,52 @@
-'use client'
+'use client';
+import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-import React, { useState, useEffect } from 'react'
-import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
-
-interface CustomGaugeProps {
-  spaceTotal: number
-  spaceFree: number
-  discName?: string
+interface SpaceDiscChartProps {
+  spaceTotal: number;
+  spaceFree: number;
+  discName?: string;
 }
 
-export default function CustomGauge({ spaceTotal, spaceFree, discName }: CustomGaugeProps) {
-  const [gaugeSize, setGaugeSize] = useState({ width: 300, height: 300, fontSize: 20 });
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < 480) {
-        setGaugeSize({ width: 150, height: 150, fontSize: 12 });
-      } else if (width < 640) {
-        setGaugeSize({ width: 200, height: 200, fontSize: 14 });
-      } else if (width <= 1024) {
-        setGaugeSize({ width: 200, height: 200, fontSize: 12 });
-      } else if (width <= 1536) {
-        setGaugeSize({ width: 250, height: 250, fontSize: 15 });
-      } else {
-        setGaugeSize({ width: 350, height: 350, fontSize: 20 });
-      }
-    };
-
-    console.log('Window size:', window.innerWidth);
-
-    handleResize(); // Set initial size
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+export default function SpaceDiscChart({
+  spaceTotal,
+  spaceFree,
+  discName,
+}: SpaceDiscChartProps) {
   const spaceUsed = spaceTotal - spaceFree;
   const percentageUsed = (spaceUsed / spaceTotal) * 100;
 
+  const getColor = () => {
+    if (percentageUsed > 80) return '#FF0000';
+    if (percentageUsed > 50) return '#FFA500'; 
+    return '#008000'; 
+  };
+
   return (
-    <div className="w-full max-w-[430px] max-sm:max-w-[350px] max-md:max-w-[300px] max-lg:max-w-[400px] max-xl:max-w-[430px] flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-4">
-      <p
-        className="font-bold text-gray-700"
-        style={{ fontSize: gaugeSize.fontSize }}
-      >
-        {discName}
-      </p>
-      <Gauge
-        width={gaugeSize.width}
-        height={gaugeSize.height}
-        value={percentageUsed}
-        startAngle={-110}
-        endAngle={110}
-        sx={{
-          [`& .${gaugeClasses.valueText}`]: {
-            fontSize: gaugeSize.fontSize,
-            fontWeight: 'bold',
-            transform: 'translate(0px, 0px)',
-          },
-          [`& .${gaugeClasses.valueArc}`]: {
-            fill: `${percentageUsed > 80 ? '#FF0000' : percentageUsed > 50 ? '#FFA500' : '#008000'}`,
-          },
-          [`& .${gaugeClasses.referenceArc}`]: {
-            fill: '#D3D3D3',
-          },
-        }}
-        text={() => `${spaceUsed.toFixed(2)} GB / ${spaceTotal} GB`}
-      />
-    </div>
-  )
+    <Card className="w-full max-w-md bg-white shadow-lg rounded-lg">
+      <CardHeader className="text-center">
+        <CardTitle className="text-lg font-bold text-gray-700">
+          {discName || 'Disco'}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col items-center justify-center">
+        <div
+          className="radial-progress bg-gray-200 mb-4"
+          style={{
+            '--value': percentageUsed,
+            '--size': '12rem',
+            '--thickness': '1rem',
+            color: getColor(),
+          } as React.CSSProperties}
+          aria-valuenow={Number(percentageUsed.toFixed(0))}
+          role="progressbar"
+        >
+          {percentageUsed.toFixed(0)}%
+        </div>
+        <span className="text-lg font-semibold text-center text-gray-600">
+          {`${spaceUsed.toFixed(2)} GB / ${spaceTotal} GB`}
+        </span>
+      </CardContent>
+    </Card>
+  );
 }

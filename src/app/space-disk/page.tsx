@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import CustomGauge from '@/components/SpaceDiscChart';
 import Loading from '@/components/Loading';
 import Container from '@/components/Container';
+import SpaceDiscChart from '@/components/SpaceDiscChart';
 
 interface DiskSpace {
   total: number;
@@ -46,14 +46,18 @@ export default function SpaceDisk() {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center p-10 bg-[#F8FAFB]">
-      <Container className='itencao-center justify-center'>
-      {loading ? (
-        <Loading />
-      ) : (
-        diskSpace && (
-          <CustomGauge spaceTotal={diskSpace.total} spaceFree={diskSpace.free} discName={discName} />
-        )        
-      )}
+      <Container className="itencao-center justify-center">    
+        {loading ? (
+          <Loading />
+        ) : (
+          diskSpace && (
+            <SpaceDiscChart
+              spaceTotal={diskSpace.total}
+              spaceFree={diskSpace.free}
+              discName={discName}
+            />
+          )
+        )}
       </Container>
     </div>
   );
