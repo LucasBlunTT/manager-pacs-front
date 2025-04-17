@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import VolumetriaChart from '@/components/VolumetriaChart';
 import InputDate from '@/components/InputDate';
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button'; // Importando o Button do ShadCN
 
 export interface VolumetriaData {
   Modalidade: string;
@@ -63,7 +63,7 @@ export default function RelatorioVolumetria() {
   }
 
   return (
-    <section className="h-screen w-screen">
+    <section className="h-screen w-screen bg-[#F8FAFB]">
       <Container className="h-screen w-screen flex-col items-center justify-center">     
         <InputDate
           startDate={startDate}
@@ -73,21 +73,37 @@ export default function RelatorioVolumetria() {
         />
         <div className="flex space-x-4 my-4">
           <Button
+            type="submit"
+            className="mt-4 bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"  
             onClick={() => handleDateRangeChange(7)}
-            description="Últimos 7 dias"
-          />
+            variant="default"
+          >
+            Últimos 7 dias
+          </Button>
           <Button
+            type="submit"
+            className="mt-4  bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"  
             onClick={() => handleDateRangeChange(15)}
-            description="Últimos 15 dias"
-          />
+            variant="default"
+          >
+            Últimos 15 dias
+          </Button>
           <Button
+            type="submit"
+            className="mt-4  bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"      
             onClick={() => handleDateRangeChange(30)}
-            description="Últimos 30 dias"
-          />
+            variant="default"
+          >
+            Últimos 30 dias
+          </Button>
           <Button
+            type="submit"
+            className="mt-4 bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"  
             onClick={() => handleDateRangeChange(365)}
-            description="Último 1 ano"
-          />
+            variant="default"
+          >
+            Último 1 ano
+          </Button>
         </div>
         {dataVolumetria.length === 0 && !loading && (
           <p className="text-center text-gray-500">

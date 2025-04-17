@@ -45,7 +45,7 @@ export default function SpaceDisk() {
   }, []);
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center p-10 ">
+    <div className="w-screen h-screen flex items-center justify-center p-10 bg-[#F8FAFB]">
       <Container className='itencao-center justify-center'>
       {loading ? (
         <Loading />

@@ -44,7 +44,7 @@ export default function CustomGauge({ spaceTotal, spaceFree, discName }: CustomG
   return (
     <div className="w-full max-w-[430px] max-sm:max-w-[350px] max-md:max-w-[300px] max-lg:max-w-[400px] max-xl:max-w-[430px] flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-4">
       <p
-        className="text-center font-bold"
+        className="font-bold text-gray-700"
         style={{ fontSize: gaugeSize.fontSize }}
       >
         {discName}

@@ -1,5 +1,5 @@
 'use client';
-import Button from '@/components/Button';
+import {Button} from '@/components/ui/button';
 import Container from '@/components/Container';
 import InputDate from '@/components/InputDate';
 import React, { useState } from 'react';
@@ -30,7 +30,7 @@ export default function ResetarGravacaoByDate() {
   }
 
   return (
-    <section className="h-screen w-screen">
+    <section className="h-screen w-screen bg-[#F8FAFB]">
       <Container className="h-screen w-screen items-center justify-center flex-col gap-2">
         <InputDate
           startDate={startDate}
@@ -38,7 +38,13 @@ export default function ResetarGravacaoByDate() {
           setStartDate={setStartDate}
           setEndDate={setEndDate}
         />
-        <Button description="Resetar Gravação" onClick={handleReset} />
+        <Button
+          type="button"
+          className="mt-4 bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"
+          onClick={handleReset}
+        >
+          Resetar Gravação
+        </Button>
         {responseMessage && (
           <div className="text-center">
             <p>{responseMessage}</p>

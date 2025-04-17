@@ -16,22 +16,22 @@ export default function InputDate({
   return (
     <div className="flex items-center justify-center mb-4 gap-10">
       <div className="flex flex-col items-center justify-center">
-        <label className="mb-2 text-foreground">Data Inicial</label>
+        <label className="mb-2 text-gray-700">Data Inicial</label>
         <input
           type="date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
-          className="border border-input rounded-md p-2"
+          className="border border-gray-300 rounded-md p-2 bg-gray-200 text-gray-800 focus:bg-white focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
       <div className="flex flex-col items-center justify-center">
-        <label className="mb-2 text-foreground">Data Final</label>
+        <label className="mb-2 text-gray-700">Data Final</label>
         <input
           type="date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
-          className="border border-input rounded-md p-2"
+          className="border border-gray-300 rounded-md p-2 bg-gray-200 text-gray-800 focus:bg-white focus:ring-2 focus:ring-blue-500"
         />
       </div>
     </div>

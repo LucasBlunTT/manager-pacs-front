@@ -1,20 +1,18 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import logoPixeon2 from '@/assets/logo/logo-pixeon-2.png';
-import AccordionVolumetric from '../Accordion/AccordionVolumetric';
-import AccordionTasks from '../Accordion/AccordionTasks';
-import AccordionProduction from '../Accordion/AccordionProduction';
 
 export default function NavBar() {
+  const [openCollapse, setOpenCollapse] = useState<string | null>(null);
+
+  function toggleCollapse(nomeTask: string) {
+    setOpenCollapse(nomeTask);
+  }
+
   return (
-    <nav
-      className="h-full w-full max-w-90 px-7 py-12 rounded-r-3xl"
-      style={{
-        background:
-          'linear-gradient(150deg, rgb(96, 76, 205) 0%, rgb(79, 200, 235) 40%, rgb(34, 188, 159) 100%)',
-      }}
-    >
+    <nav className="h-full w-full max-w-90 px-7 py-12 shadow-xl">
       <Link href="/">
         <Image
           src={logoPixeon2}
@@ -27,21 +25,118 @@ export default function NavBar() {
       <h1 className="text-xl font-bold text-white">DASHBOARD TASKS</h1>
 
       <ul className="mt-4 space-y-2 text-white">
-        <li className="font-bold hover:text-gray-300 cursor-pointer">
-          <AccordionVolumetric description={'Relatórios de Volumetria'} />
-        </li>
-        
-        <li className="font-bold hover:text-gray-300 cursor-pointer">
-          <AccordionProduction description={'Relatórios de Produção'} />
+        <li>
+          <div
+            tabIndex={0}
+            className={`collapse collapse-arrow border border-base-300 ${
+              openCollapse === 'volumetria' ? 'collapse-open' : ''
+            }`}
+            onClick={() => toggleCollapse('volumetria')}
+          >
+            <div className="collapse-title font-semibold text-white">
+              Relatórios de Volumetria
+            </div>
+            <div className="collapse-content text-sm">
+              <Link
+                href="/relatorio-volumetria"
+                className="text-white hover:underline"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Acessar Relatórios de Volumetria
+              </Link>
+            </div>
+          </div>
         </li>
 
-        <li className="font-bold hover:text-gray-300 cursor-pointer">
-          <AccordionTasks description={'Ferramentas'} />
+        <li>
+          <div
+            tabIndex={0}
+            className={`collapse collapse-arrow border border-base-300 ${
+              openCollapse === 'producao' ? 'collapse-open' : ''
+            }`}
+            onClick={() => toggleCollapse('producao')}
+          >
+            <div className="collapse-title font-semibold text-white">
+              Relatórios de Produção
+            </div>
+            <div className="flex flex-col collapse-content text-sm">
+              <Link
+                href="/cadastro-colaborador"
+                className="text-white hover:underline"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Cadastrar Técnico
+              </Link>
+              <Link
+                href="/cadastro-colaborador"
+                className="text-white hover:underline"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Relatório Produtividade
+              </Link>
+            </div>
+          </div>
         </li>
 
-        <li className="font-bold hover:text-gray-300 cursor-pointer">
-        <Link href="/space-disk">Espaço Armazenamento</Link>
-        </li>  
+        <li>
+          <div
+            tabIndex={0}
+            className={`collapse collapse-arrow border border-base-300 ${
+              openCollapse === 'ferramentas' ? 'collapse-open' : ''
+            }`}
+            onClick={() => toggleCollapse('ferramentas')}
+          >
+            <div className="collapse-title font-semibold text-white">
+              Ferramentas
+            </div>
+            <div className="flex flex-col collapse-content text-sm">
+              <Link
+                href="/resetar-status-gravacao"
+                className="text-white hover:underline"
+                onClick={(e) => e.stopPropagation()} // Evita que o clique feche o collapse
+              >
+                Resetar Status Gravacao[ACC]
+              </Link>
+              <Link
+                href="/resetar-status-gravacao-data"
+                className="text-white hover:underline"
+                onClick={(e) => e.stopPropagation()} // Evita que o clique feche o collapse
+              >
+                Resetar Status Gravacao[DATA]
+              </Link>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div
+            tabIndex={0}
+            className={`collapse collapse-arrow border border-base-300 ${
+              openCollapse === 'agora' ? 'collapse-open' : ''
+            }`}
+            onClick={() => toggleCollapse('agora')}
+          >
+            <div className="collapse-title font-semibold text-white">
+              Acontecendo Agora
+            </div>
+            <div className="flex flex-col collapse-content text-sm">
+              <Link
+                href="/consumo-diario"
+                className="text-white hover:underline"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Acessar Consumo Diário
+              </Link>
+              <Link
+                href="/space-disk"
+                className="text-white hover:underline"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Acessar Espaço de Armazenamento
+              </Link>
+            </div>
+          </div>
+        </li>
       </ul>
     </nav>
   );

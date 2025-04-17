@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input"; 
 import Container from "@/components/Container";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -29,66 +30,64 @@ export default function CadastroColaborador() {
   }, []);
 
   return (
-    <section className="h-screen w-screen flex items-center justify-center">
+    <section className="h-screen w-screen flex items-center justify-center bg-[#F8FAFB]">
       <Container className="h-full w-full items-center justify-center">
         <Card className="w-full max-w-md bg-white shadow-lg rounded-lg">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold text-gray-800">
+            <CardTitle className="text-3xl font-bold text-gray-700">
               Cadastro de Colaborador
             </CardTitle>
           </CardHeader>
           <CardContent>
             <form className="flex flex-col gap-6">
               <div className="flex flex-col">
-                <Label htmlFor="nome" className="text-gray-700 font-medium">
+                <Label htmlFor="nome" className="text-gray-700 font-medium mb-1">
                   Nome
                 </Label>
-                <input
+                <Input
                   type="text"
                   id="nome"
                   name="nome"
-                  placeholder="Digite o nome"
+                  placeholder="Digite o nome"   
+                  className="placeholder:text-gray-300"                       
                   value={nome}
                   onChange={(e) => setNome(e.target.value)}
-                  className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
               <div className="flex flex-col">
                 <Label
                   htmlFor="horario_inicio"
-                  className="text-gray-700 font-medium"
+                  className="text-gray-700 font-medium mb-1"
                 >
                   Horário de Início
                 </Label>
-                <input
+                <Input
                   type="time"
                   id="horario_inicio"
                   name="horario_inicio"
                   value={horarioInicio}
                   onChange={(e) => setHorarioInicio(e.target.value)}
-                  className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
               <div className="flex flex-col">
                 <Label
                   htmlFor="horario_fim"
-                  className="text-gray-700 font-medium"
+                  className="text-gray-700 font-medium mb-1"
                 >
                   Horário de Fim
                 </Label>
-                <input
+                <Input
                   type="time"
                   id="horario_fim"
                   name="horario_fim"
                   value={horarioFim}
                   onChange={(e) => setHorarioFim(e.target.value)}
-                  className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
               <div className="flex flex-col">
                 <Label
                   htmlFor="station_name"
-                  className="text-gray-700 font-medium"
+                  className="text-gray-700 font-medium mb-1"
                 >
                   Equipamento
                 </Label>
@@ -96,8 +95,8 @@ export default function CadastroColaborador() {
                   onValueChange={(value) => setStationName(value)}
                   value={stationName}
                 >
-                  <SelectTrigger className="mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                    <SelectValue placeholder="Selecione um equipamento" />
+                  <SelectTrigger className="mt-2 p-3 border border-gray-300 rounded-lg text-gray-700">
+                    <SelectValue placeholder="Selecione um equipamento"/>
                   </SelectTrigger>
                   <SelectContent>
                     {stations.map((station, index) => (
@@ -110,8 +109,7 @@ export default function CadastroColaborador() {
               </div>
               <Button
                 type="submit"
-                className="mt-4 bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-all"
-                
+                className="mt-4 bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"                                
               >
                 Salvar
               </Button>
