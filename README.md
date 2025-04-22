@@ -15,19 +15,20 @@ O **Manager PACS Frontend** é um sistema desenvolvido em **Next.js** e **React*
 ## 📷 Screenshot
 
 ### Volumetria Por Data
-<img src="https://github.com/user-attachments/assets/53d6a6e7-098a-45e0-8a3b-af08d22e6eba" width="1900"/>
+<img src="https://github.com/user-attachments/assets/fb8cfc83-78f0-460c-b2e2-344512cce8b8" width="1900"/>
+
 
 ### Consumo Diário
-![image](https://github.com/user-attachments/assets/83b6c7e2-24f5-48c0-a212-4f4d05f39dba)
+![image](https://github.com/user-attachments/assets/ab866830-ecec-4949-b5cd-956b12293859)
 
 ### Resetar Status de Gravação por ACC
-<img src="https://github.com/user-attachments/assets/b9e27d68-1ee8-45c0-8279-fc7b03653db3" width="900"/>
+![image](https://github.com/user-attachments/assets/a7f01c5a-f1b1-40b7-82a8-469eaafa0695)
 
 ### Resetar Status de Gravação por Range de Data
-<img src="https://github.com/user-attachments/assets/864f7940-2989-4522-bde3-3e804ee539fa" width="900"/>
+![image](https://github.com/user-attachments/assets/49abe675-816f-455c-84bc-0f45f2668980)
 
 ### Verificar espaço em disco
-![image](https://github.com/user-attachments/assets/bd248afe-b31b-4abb-a497-a2a5848eaf91)
+![image](https://github.com/user-attachments/assets/79b86dc3-c0b7-46db-9d91-3a1a9bcaee91)
 
 
 ## 💻 Tecnologias Utilizadas
