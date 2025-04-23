@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import VolumetriaChartDaily from '@/components/VolumetriaChartDaily';
 import Loading from '@/components/Loading';
-import RadialChart from '@/components/RadialChart';
+import { Chart } from '@/components/Chart';
 
 export interface VolumetriaData {
   Modalidade: string;
@@ -70,20 +70,19 @@ export default function ConsumoDiario() {
 
   return (
     <section className="h-screen w-screen flex flex-col items-center justify-center bg-[#F8FAFB]">
-        <div className="text-center text-gray-500">
+      <div className="text-center text-gray-500">
         <p>Próxima atualização em: {timeLeft} segundos</p>
       </div>
       <div className="flex h-full w-full items-center justify-center gap-10">
-    
         {loading ? (
           <Loading />
         ) : (
           <>
             <VolumetriaChartDaily data={dataVolumetria} />
-            <RadialChart data={dataVolumetria} />
+            <Chart data={dataVolumetria}/>
           </>
         )}
-      </div>           
+      </div>
     </section>
   );
 }
