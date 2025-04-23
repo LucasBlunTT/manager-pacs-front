@@ -30,7 +30,12 @@ const generateUniqueColors = (count: number): string[] => {
   for (let i = 0; i < count; i++) {
     const hue = (i * step) % 360;
     const adjustedLightness = lightness + (i % 2 === 0 ? -10 : 10); // Alterna a luminosidade para gerar mais variações
-    colors.push(`hsl(${hue}, ${saturation}%, ${Math.max(30, Math.min(70, adjustedLightness))}%)`);
+    colors.push(
+      `hsl(${hue}, ${saturation}%, ${Math.max(
+        30,
+        Math.min(70, adjustedLightness),
+      )}%)`,
+    );
   }
   return colors;
 };
@@ -89,7 +94,7 @@ export function Chart({ data }: DataProps) {
           config={chartConfig}
           className="mx-auto aspect-square max-h-[1200px] [&_.recharts-text]:fill-background"
         >
-          <PieChart >
+          <PieChart>
             <ChartTooltip
               content={
                 <ChartTooltipContent
@@ -104,7 +109,7 @@ export function Chart({ data }: DataProps) {
                 dataKey="modalidade"
                 position={'middle'}
                 stroke="none"
-                fontSize={12}       
+                fontSize={12}
                 formatter={(value: keyof typeof chartConfig) =>
                   chartConfig[value]?.label
                 }
@@ -114,12 +119,25 @@ export function Chart({ data }: DataProps) {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex flex-col items-center justify-center gap-2">
-        <span className="text-sm text-black">
-          Total Estudos Armazenados Hoje
-        </span>
-        <span className="text-sm text-black">
-          {chartData.reduce((total, item) => total + item.estudos, 0)}
-        </span>
+        <div className="flex gap-2">
+          <span className="text-lg font-semibold text-center text-gray-600">
+            Total Estudos:
+          </span>
+          <span className="text-lg font-semibold text-center text-gray-600">
+            {chartData.reduce((total, item) => total + item.estudos, 0)}
+          </span>
+        </div>
+        <div className="flex gap-2">
+          <span className="text-lg font-semibold text-center text-gray-600">
+            Total (GB):
+          </span>
+          <span className="text-lg font-semibold text-center text-gray-600">
+            {volumetriaData.reduce(
+              (total, item) => total + parseInt(item['Tamanho (GB)'], 10),
+              0,
+            )}
+          </span>
+        </div>
       </CardFooter>
     </Card>
   );
