@@ -134,6 +134,13 @@ export default function NavBar() {
               >
                 Acessar Espaço de Armazenamento
               </Link>
+              <Link
+                href="/monitoramento-worklist"
+                className="text-white hover:underline"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Monitoramento da Worklist
+              </Link>
             </div>
           </div>
         </li>
