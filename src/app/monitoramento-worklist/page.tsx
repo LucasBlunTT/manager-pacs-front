@@ -103,8 +103,8 @@ export default function MonitoramentoWorklist() {
   return (
     <section
       className={cn(
-        'min-h-screen w-screen flex flex-col items-center justify-start bg-[#F8FAFB] text-slate-800',
-        'p-4 md:p-6',
+        'min-h-screen w-full flex flex-col items-center justify-start bg-[#F8FAFB] text-slate-800',
+        'p-4 md:p-6 overflow-x-auto',
       )}
     >
       {/* título + ações */}
@@ -153,7 +153,7 @@ export default function MonitoramentoWorklist() {
         <div className="rounded-xl">
           {/* removido table-zebra */}
           <table className="table">
-            <thead className="sticky top-0 z-10 bg-[#604CCD]/10 text-slate-900 backdrop-blur">
+            <thead className="top-0 z-10 bg-[#604CCD]/10 text-slate-900 backdrop-blur">
               <tr className="text-sm">
                 <th className="px-4 py-3">#</th>
                 <th className="px-4 py-3">Accession</th>
