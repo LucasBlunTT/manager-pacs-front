@@ -61,18 +61,11 @@ export default function NavBar() {
             </div>
             <div className="flex flex-col collapse-content text-sm">
               <Link
-                href="/cadastro-colaborador"
+                href="/rel-equipamentos"
                 className="text-white hover:underline"
                 onClick={(e) => e.stopPropagation()}
               >
-                Cadastrar Técnico
-              </Link>
-              <Link
-                href="/cadastro-colaborador"
-                className="text-white hover:underline"
-                onClick={(e) => e.stopPropagation()}
-              >
-                Relatório Produtividade
+                Equipamentos
               </Link>
             </div>
           </div>
