@@ -69,7 +69,7 @@ export default function ConsumoDiario() {
   }, []);
 
   return (
-    <section className="h-screen w-screen flex flex-col items-center justify-center bg-[#F8FAFB]">
+    <section className="min-h-screen w-screen flex flex-col items-center justify-center bg-[#F8FAFB]">
       <div className="text-center text-gray-500">
         <p>Próxima atualização em: {timeLeft} segundos</p>
       </div>

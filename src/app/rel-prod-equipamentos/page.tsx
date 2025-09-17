@@ -1,10 +1,32 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 
 export default function ProdutividadeEquipamentos() {
+  const [equipamentos, setEquipamentos] = useState<string[]>([]);
+
+  async function fetchEquipamentos() {
+    try {
+      const response = await fetch('http://localhost:3333/api/equipamentos');
+      if (!response.ok) {
+        throw new Error('Erro ao buscar equipamentos');
+      }
+      const data = await response.json();
+      const stationNames = data.map(
+        (item: { 'Station Name': string }) => item['Station Name'],
+      );
+      setEquipamentos(stationNames);
+    } catch (error) {
+      console.error('Erro ao carregar equipamentos:', error);
+    }
+  }
+
+  useEffect(() => {
+    fetchEquipamentos();
+  }, []);
+
   // =========================
   // MOCKS (exemplo visual)
   // =========================
-  const MOCK_STATIONS = ['MR01MR01', 'CT02CT02', 'US03US03']; // TODO: preencher via backend
   const MOCK_PERIODO = 'Semana'; // TODO: vir do filtro
   const MOCK_INTERVALO = '2025-03-17 a 2025-03-23'; // TODO: vir do filtro
   const MOCK_TOTAL = 128; // TODO: vir do backend
@@ -31,11 +53,11 @@ export default function ProdutividadeEquipamentos() {
         </div>
 
         {/* Filtros */}
-        <div className="card bg-white border border-[#E7E9F2] shadow-xl">
-          <div className="card-body gap-5">
+        <div className="w-full flex flex-col card bg-white border border-[#E7E9F2] shadow-xl">
+          <div className="flex flex-col card-body gap-5">
             {/* Linha 1: Equipamento + Período */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="form-control">
+            <div className="flex flex-col items-center justify-center gap-5">
+              <div className="flex flex-col form-control items-center">
                 <label className="label">
                   <span className="label-text font-medium">
                     Equipamento (stationnam)
@@ -48,19 +70,15 @@ export default function ProdutividadeEquipamentos() {
                   <option value="" disabled>
                     Selecione um equipamento
                   </option>
-                  {/* MOCK — substituir pelos reais */}
-                  {MOCK_STATIONS.map((s) => (
-                    <option key={s}>{s}</option>
+                  {equipamentos.map((equipamento) => (
+                    <option key={equipamento} value={equipamento}>
+                      {equipamento}
+                    </option>
                   ))}
                 </select>
-                <label className="label">
-                  <span className="label-text-alt text-slate-500">
-                    * Lista mockada — conecte ao endpoint de equipamentos
-                  </span>
-                </label>
               </div>
 
-              <div className="form-control md:col-span-2">
+              <div className="flex flex-col items-center form-control md:col-span-2">
                 <label className="label">
                   <span className="label-text font-medium">Período</span>
                 </label>
@@ -79,32 +97,13 @@ export default function ProdutividadeEquipamentos() {
                     Ano
                   </button>
                 </div>
-                <label className="label">
-                  <span className="label-text-alt text-slate-500">
-                    * Apenas UI — selecione via estado quando ligar a lógica
-                  </span>
-                </label>
               </div>
             </div>
 
             {/* Linha 2: Datas e horários */}
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              {/* Para “Dia” */}
-              <div className="form-control md:col-span-1">
-                <label className="label">
-                  <span className="label-text font-medium">
-                    Data (studydate)
-                  </span>
-                </label>
-                <input
-                  type="date"
-                  className="input input-bordered bg-white disabled:bg-white border-slate-300 focus:outline-none focus:border-[#604CCD]"
-                  defaultValue="2025-03-17"
-                />
-              </div>
-
               {/* Intervalo (Semana/Mês/Ano) */}
-              <div className="form-control md:col-span-2">
+              <div className="flex flex-col form-control md:col-span-2">
                 <label className="label">
                   <span className="label-text font-medium">Data inicial</span>
                 </label>
@@ -115,7 +114,7 @@ export default function ProdutividadeEquipamentos() {
                 />
               </div>
 
-              <div className="form-control md:col-span-2">
+              <div className="flex flex-col form-control md:col-span-2">
                 <label className="label">
                   <span className="label-text font-medium">Data final</span>
                 </label>
@@ -201,7 +200,7 @@ export default function ProdutividadeEquipamentos() {
           </div>
           <div className="stat">
             <div className="stat-title text-slate-800">Equipamento</div>
-            <div className="stat-value text-slate-900">{MOCK_STATIONS[0]}</div>
+            <div className="stat-value text-slate-900">{equipamentos[0]}</div>
             <div className="stat-desc text-slate-800">
               * mock — usar seleção do filtro
             </div>
@@ -213,7 +212,9 @@ export default function ProdutividadeEquipamentos() {
             <div className="stat-value text-slate-900">{'3,5 hours'}</div>
           </div>
           <div className="stat">
-            <div className="stat-title text-slate-800">Ociosidade Equipamento</div>
+            <div className="stat-title text-slate-800">
+              Ociosidade Equipamento
+            </div>
             <div className="stat-value text-slate-900">{'2,5 minutes'}</div>
           </div>
         </div>
