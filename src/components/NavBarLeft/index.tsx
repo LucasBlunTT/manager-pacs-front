@@ -61,7 +61,7 @@ export default function NavBar() {
             </div>
             <div className="flex flex-col collapse-content text-sm">
               <Link
-                href="/rel-equipamentos"
+                href="/rel-prod-equipamentos"
                 className="text-white hover:underline"
                 onClick={(e) => e.stopPropagation()}
               >

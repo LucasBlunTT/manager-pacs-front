@@ -67,6 +67,7 @@ export default function MonitoramentoWorklist() {
       setErr(null);
       const response = await axios.get<Row[]>(
         'http://localhost:3333/api/monitoramento-worklist',
+        { headers: { 'Cache-Control': 'no-cache' } },
       );
       setWorklistData(response.data);
     } catch (error: unknown) {
