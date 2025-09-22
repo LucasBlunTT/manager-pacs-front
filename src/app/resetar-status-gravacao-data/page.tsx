@@ -1,9 +1,9 @@
 'use client';
-import {Button} from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import Container from '@/components/Container';
 import InputDate from '@/components/InputDate';
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from '@/lib/api';
 
 export default function ResetarGravacaoByDate() {
   const [startDate, setStartDate] = useState('');
@@ -13,13 +13,10 @@ export default function ResetarGravacaoByDate() {
 
   async function handleReset() {
     try {
-      const response = await axios.post(
-        'http://localhost:3333/api/reset-exam-record',
-        {
-          startDate,
-          endDate,
-        },
-      );
+      const response = await api.post('/api/reset-exam-record', {
+        startDate,
+        endDate,
+      });
       setResponseMessage(response.data.message);
       setAffectedRows(response.data.affectedRows);
       setStartDate('');

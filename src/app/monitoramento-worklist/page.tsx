@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { cn } from '@/lib/utils';
 import { formatDate, formatDateTime } from '@/utils/utils';
+import { api } from '@/lib/api';
 
 type Row = {
   na_accessionnumber: string;
@@ -65,10 +65,7 @@ export default function MonitoramentoWorklist() {
     try {
       setLoading(true);
       setErr(null);
-      const response = await axios.get<Row[]>(
-        'http://localhost:3333/api/monitoramento-worklist',
-        { headers: { 'Cache-Control': 'no-cache' } },
-      );
+      const response = await api.get('/api/monitoramento-worklist');
       setWorklistData(response.data);
     } catch (error: unknown) {
       if (error instanceof Error) {

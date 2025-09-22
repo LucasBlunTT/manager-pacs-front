@@ -1,9 +1,9 @@
 'use client';
-import {Button} from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import Container from '@/components/Container';
-import { Input } from "@/components/ui/input"; 
+import { Input } from '@/components/ui/input';
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from '@/lib/api';
 
 export default function ResetarGravacaoByAcc() {
   const [inputValue, setInputValue] = useState('');
@@ -12,12 +12,9 @@ export default function ResetarGravacaoByAcc() {
 
   async function handleReset() {
     try {
-      const response = await axios.post(
-        'http://localhost:3333/api/reset-exam-record',
-        {
-          accessionNumber: inputValue,
-        },
-      );
+      const response = await api.post('/api/reset-exam-record', {
+        accessionNumber: inputValue,
+      });
       setResponseMessage(response.data.message);
       setAffectedRows(response.data.affectedRows);
       setInputValue('');
@@ -30,7 +27,7 @@ export default function ResetarGravacaoByAcc() {
     <section className="h-screen w-screen bg-[#F8FAFB]">
       <Container className="h-screen w-screen items-center justify-center flex-col gap-2">
         <Input
-          className='text-center w-1/2 placeholder:text-gray-300'
+          className="text-center w-1/2 placeholder:text-gray-300"
           value={inputValue}
           placeholder="Número de Acesso"
           onChange={(e) => setInputValue(e.target.value)}

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { api } from '@/lib/api';
 import Loading from '@/components/Loading';
 import Container from '@/components/Container';
 import SpaceDiscChart from '@/components/SpaceDiscChart';
@@ -20,7 +20,7 @@ export default function SpaceDisk() {
     async function fetchDiskSpace() {
       try {
         setLoading(true);
-        const result = await axios.get('http://localhost:3333/api/disco-ativo');
+        const result = await api.get('/api/disco-ativo');
         setDiskSpace(result.data);
         setDiscName(result.data.discName);
 
@@ -46,7 +46,7 @@ export default function SpaceDisk() {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center p-10 bg-[#F8FAFB]">
-      <Container className="itencao-center justify-center">    
+      <Container className="itencao-center justify-center">
         {loading ? (
           <Loading />
         ) : (

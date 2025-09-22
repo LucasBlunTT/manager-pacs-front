@@ -1,9 +1,9 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import VolumetriaChartDaily from '@/components/VolumetriaChartDaily';
 import Loading from '@/components/Loading';
 import { Chart } from '@/components/Chart';
+import { api } from '@/lib/api';
 
 export interface VolumetriaData {
   Modalidade: string;
@@ -32,13 +32,10 @@ export default function ConsumoDiario() {
 
       if (!startDate || !endDate) return;
       try {
-        const response = await axios.post(
-          'http://localhost:3333/api/volumetric-report',
-          {
-            startDate: startDate,
-            endDate: endDate,
-          },
-        );
+        const response = await api.post('/api/volumetric-report', {
+          startDate: startDate,
+          endDate: endDate,
+        });
         setDataVolumetria(response.data);
         setLoading(false);
       } catch (error) {
@@ -79,7 +76,7 @@ export default function ConsumoDiario() {
         ) : (
           <>
             <VolumetriaChartDaily data={dataVolumetria} />
-            <Chart data={dataVolumetria}/>
+            <Chart data={dataVolumetria} />
           </>
         )}
       </div>

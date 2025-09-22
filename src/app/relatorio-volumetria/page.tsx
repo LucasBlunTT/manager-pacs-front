@@ -1,10 +1,10 @@
 'use client';
 import Container from '@/components/Container';
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import VolumetriaChart from '@/components/VolumetriaChart';
 import InputDate from '@/components/InputDate';
 import { Button } from '@/components/ui/button'; // Importando o Button do ShadCN
+import { api } from '@/lib/api';
 
 export interface VolumetriaData {
   Modalidade: string;
@@ -27,13 +27,10 @@ export default function RelatorioVolumetria() {
       if (!startDate || !endDate) return;
       try {
         setLoading(true);
-        const response = await axios.post(
-          'http://localhost:3333/api/volumetric-report',
-          {
-            startDate: startDate,
-            endDate: endDate,
-          },
-        );
+        const response = await api.post('/api/volumetric-report', {
+          startDate: startDate,
+          endDate: endDate,
+        });
         setDataVolumetria(response.data);
         setLoading(false);
       } catch (error) {
@@ -64,7 +61,7 @@ export default function RelatorioVolumetria() {
 
   return (
     <section className="h-screen w-screen bg-[#F8FAFB]">
-      <Container className="h-screen w-screen flex-col items-center justify-center">     
+      <Container className="h-screen w-screen flex-col items-center justify-center">
         <InputDate
           startDate={startDate}
           endDate={endDate}
@@ -74,7 +71,7 @@ export default function RelatorioVolumetria() {
         <div className="flex space-x-4 my-4">
           <Button
             type="submit"
-            className="mt-4 bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"  
+            className="mt-4 bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"
             onClick={() => handleDateRangeChange(7)}
             variant="default"
           >
@@ -82,7 +79,7 @@ export default function RelatorioVolumetria() {
           </Button>
           <Button
             type="submit"
-            className="mt-4  bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"  
+            className="mt-4  bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"
             onClick={() => handleDateRangeChange(15)}
             variant="default"
           >
@@ -90,7 +87,7 @@ export default function RelatorioVolumetria() {
           </Button>
           <Button
             type="submit"
-            className="mt-4  bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"      
+            className="mt-4  bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"
             onClick={() => handleDateRangeChange(30)}
             variant="default"
           >
@@ -98,7 +95,7 @@ export default function RelatorioVolumetria() {
           </Button>
           <Button
             type="submit"
-            className="mt-4 bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"  
+            className="mt-4 bg-[#604CCD] text-white font-semibold py-3 rounded-lg hover:bg-[#604CCD]/80 transition-all"
             onClick={() => handleDateRangeChange(365)}
             variant="default"
           >
